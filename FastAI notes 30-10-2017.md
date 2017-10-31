@@ -80,8 +80,10 @@ Function to determine if neuron is to fire. Weights and biases combined to estab
 
 ##### ReLU (most commonly used) (fast training, cheap maximum function)
 * max(0,z) (doesnt suffer from exploding gradient issue from exponentials)
-* dozen-100's of layer in neurl net
+* good for when there are dozens-100's of layer in neural net
+* Fixes the vanishing gradient problem (the small magitude of a gradient function which can lead to a very low rate of convergence in gradient decent algorithms).
 * back propogation needs to be able to go all the way back through many iterations and not run into exploding values.
+
 
 ##### Softmax (usually used in final layer)
 * (to select one more prevalent neuron than the others, reinforce these signals to make a decision).
@@ -123,6 +125,7 @@ zero padding is used to maintain dimensionality in vgg16.
 **Drop out is a regularisation technique.**
 Regularisation is a process to prevent overfitting.
 We have neurons randomly drop out in the training process the network must become more resiliant.
+Drop out occurs each training step (not on a per epoch basis, more regularly than that).
 
 #### Outputs of the CNN:
 
@@ -145,12 +148,12 @@ Zeropadding to avoid dimensionality change.
     * 64 = size of the filters used in the convolution kernel
     * 3x3 = size of the convolution kernel.
     * activation function is also defined here "relu" all the way except for dense output layer. (where softmax is used).
+    * 3x3 is preffered these days as it gives reasonable definition in any one direction.
 
 * max pooling (2,2) 2x2 is being used in vgg16 
     * stride = how far the pooling implements across the image. 
     * strides too long  = information lost
-    * 3x3 is preffered these days as it gives reasonable definition in any one direction.
-
+    
 As we go down layers, they increase the numbers of filters able to train on 64 to 512 (in convolution layers).
 
 model.add(Flatten()) #We are now training on abstract concepts
@@ -171,7 +174,7 @@ dropout(0.5) (0.5 = proportion of neurons which are left out of a particular lay
 
 ### Additional Resources
 
-http://www.playground.tensorflow.org = excellent resource to play around with a simple neural net in browser to understand different parts of them intuitively.
+playground.tensorflow.org = excellent resource to play around with a simple neural net in browser to understand different parts of them intuitively.
 
 * jitter in the picture means that the model is volitile, reduce your learning rate.
 * modern frameworks will automatically drop the learning rate as the number of epochs increases.

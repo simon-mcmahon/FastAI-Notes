@@ -40,7 +40,7 @@ We can make an ensemble voter which combines together the results of many models
 AUC is the area under a curve of an ROC curve (plot of True positive rate vs false positive rate (y vs x)).
 
 
-We cannot be expected to memorise the best possible hyperparameter. Run a data science experiment with an experiment in a timely manner.
+We cannot be expected to memorise the best possible hyperparameter. Run a data science experiment with an experiment in a timely manner. Speed is a key parameter here (do as many as possible and do the m quickly with the available resources).
 
 
 Build a function to pick a subset of hyperparameter, do a grid search to optimize.

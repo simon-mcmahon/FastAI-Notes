@@ -90,3 +90,80 @@ Typically we are given a grid-search. Reccommend a random, discrete grid search.
 
 We should not pay too much attention to the training data.
 AUC = 0.95
+
+
+GANs
+generative adversarial networks
+
+loss functino = the function which determines how well your model think it is doing.
+The model must base all of its learning off this score
+we should design it to convey the information we want it to
+
+A better approach is giving your learner richer knowledge such as:
+position, size, species etc. of a fish 
+
+Problem:
+How to score (incrementally) such a vague task like (pictures, movie scripts etc.)
+
+GANs are the strategy for to create a scoring system for these vague, non-concrete problems.
+
+GANs:
+generator vs discriminatior (2 NNs in competition)
+generator generates the script/movie
+discriminator says if it is real or fake.
+
+Key insight: A neural network is being the loss function.
+
+Important for the judge, he needs to not be very good in the beginning. The judge learns as it goes along.
+Discriminator is about as skilled as the generator at each point. The loss function trains both the judge and the artist.
+
+latent variable space (random seed for the image). 
+we can make it N-dimensional (hand it a vector).
+We can make some this effect properties
+Latent variable space can be arbitrarily big. Design considerations:
+- changing 1 number in the vector. (1 dimension is another knob to fine tune the image). 
+There is not a hard lock between image size and variable size dimension size.
+
+Generator back propogation step. it has access to the discriminator neurons so it knows how to fool the generator.
+Discriminator learns in the same way CNN.
+
+GANs. Original ones are very unstable. In last 2 years, a LOT of progress has been made.
+Stability tricks to get system to converge:
+soft labels and noisy labels. adding noise to inputs (dont label everything 0 or 1).
+remember history dont let neurons change too much (checkpoint generations)
+avoid sparse gradients (Relu)
+- if the value is forced to zero we may not get as smooth a transition.
+this is because we want smooth transitions.
+Leaky relu was reccommended instead.
+
+we can add and subtract "concepts" about the face such as "glases" or "smile vector" in the latent variable space.
+
+discriminator is a convolutional NN
+generator is a deconvolutional NN (not actually an unpooling operation)(it is the inverse of a convolution, we have one pixel bleed into 9 or so).
+
+deconvolutional network. we unpool over and over to expand a a 7x7 vector 
+
+overlap between neurons depends on your stride length.
+bilinear interpolation is the name of the process for unpooling.
+we use a spline process to smooth out the digital increases.
+
+initially we start with a small discriminator nad generator and then when it reaches a certain level of competancy, we expand the number of layers and the area that the GAN can access.
+
+## Going deeper on GANs
+
+DCGAN is a deep convolutional GAN.
+GCGAN are GAN 2.0.
+We are now up to like GAN 13.0. Many im
+
+arvix is a good source of printed literature on other peoples projects.
+
+## Cool GAN projects
+
+progressive GANs Nvidia (we can 
+stacked GANs (initial photo generation step and then expansion ghan.)
+CycleGAN is really cool. (zebras to horses).
+
+Fake news GAN.
+
+evolutionary algorithms are non-directed. Sam is not a fan.
+neural networks are powerful because each step we know the directino in which we want to head.
